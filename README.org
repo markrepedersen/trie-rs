@@ -1,0 +1,43 @@
+* Abstract
+A simple Trie implementation that I needed for my Rust projects.
+
+* Usage
+#+begin_src rust
+    #[test]
+    fn test_insertion() {
+        let mut trie = Trie::new();
+        trie.insert("tr");
+        trie.insert("tri");
+        trie.insert("trie");
+        trie.insert("hello");
+
+        assert!(trie.contains("tr"));
+        assert!(trie.contains("tri"));
+        assert!(trie.contains("trie"));
+        assert!(trie.contains("hello"));
+        assert!(!trie.contains("hell"));
+    }
+
+    #[test]
+    fn test_longest_prefix_sad_path() {
+        let mut trie = Trie::new();
+        trie.insert("tr");
+        trie.insert("tri");
+        trie.insert("trie");
+        trie.insert("hello");
+
+        assert_eq!(trie.longest_prefix("hello mark"), None);
+    }
+
+    #[test]
+    fn test_longest_prefix_happy_path() {
+        let mut trie = Trie::new();
+        trie.insert("tr");
+        trie.insert("tri");
+        trie.insert("trie");
+        trie.insert("hello");
+
+        assert_eq!(trie.longest_prefix("trie"), Some("trie".to_string()));
+        assert_eq!(trie.longest_prefix("hello"), Some("hello".to_string()));
+    }
+#+end_src
